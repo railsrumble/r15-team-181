@@ -10,3 +10,12 @@
 <%= label_tag :strokes, "#{@name[:strokes]}" %> <br />
 <%= submit_tag "이름 궁합" %>
 <% end %>
+
+<% if current_user %>
+<%= "친구 수: #{current_user.friends_count}명" %> <br />
+<ol>
+<% current_user.friends_names.each do |x| %>
+<li><%= x %></li>
+<% end %>
+</ol>
+<% end %>
