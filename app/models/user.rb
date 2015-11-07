@@ -56,8 +56,8 @@ class User < ActiveRecord::Base
           {
             :friend_name => x["name"],
             :hangul => hangul?(x["name"]),
-            :match_forward => (hangul?(x["name"]) ? to_strokes(self.name, x["name"]) : "failed" ),
-            :match_backward => (hangul?(x["name"]) ? to_strokes(x["name"], self.name) : "failed" )
+            :match_forward => to_strokes_global(self.name, x["name"])[2],
+            :match_backward => to_strokes_global(x["name"], self.name)[2]
           }
         end
         logger.info list.size

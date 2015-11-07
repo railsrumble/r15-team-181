@@ -1,3 +1,5 @@
+require 'net/http'
+
 module NamesHelper
   # == 한글 인코딩의 이해 2편: 유니코드와 Java를 이용한 한글 처리
   #  * http://helloworld.naver.com/helloworld/19187
@@ -99,5 +101,17 @@ module NamesHelper
       z.shift
     }
     z.join('').to_i
+  end
+
+  def to_korean word
+    a = Net::HTTP.get("translate.naver.com",
+      "/koreaPron.dic?query=#{word}&srcLang=en&tarLang=ko")
+    a.force_encoding('UTF-8').strip
+  end
+
+  def to_strokes_global foo, bar
+    foo = foo.split.map{ |x| to_korean x }.join '' unless hangul? foo
+    bar = bar.split.map{ |x| to_korean x }.join '' unless hangul? bar
+    [foo, bar, to_strokes(foo, bar)]
   end
 end
