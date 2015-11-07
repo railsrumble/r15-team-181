@@ -77,7 +77,7 @@ module NamesHelper
   def to_strokes foo, bar
     f = foo.chars
     b = bar.chars
-    baz = Array.new(foo.size){ f.shift + b.shift }.join ''
+    baz = Array.new(foo.size){ "#{f.shift}#{b.shift}" }.join ''
     ((count_strokes baz).join '').to_i
     z = count_strokes baz
     loop {

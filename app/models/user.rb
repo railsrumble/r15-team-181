@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include NamesHelper
+
   def self.from_omniauth auth
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
       user.provider = auth.provider
@@ -37,6 +39,28 @@ class User < ActiveRecord::Base
       friends = fb.get_connection("me", "invitable_friends")
       loop do
         list += friends.map{ |x| x["name"] }
+        friends = friends.next_page
+        break if friends.nil?
+      end
+    end
+    list
+  end
+
+  def match_friends
+    list = []
+    facebook do |fb|
+      friends = fb.get_connection("me", "invitable_friends")
+      loop do
+        list += friends.map do |x|
+          puts "#{self.name}, #{x['name']}"
+          {
+            :friend_name => x["name"],
+            :hangul => hangul?(x["name"]),
+            :match_forward => (hangul?(x["name"]) ? to_strokes(self.name, x["name"]) : "failed" ),
+            :match_backward => (hangul?(x["name"]) ? to_strokes(x["name"], self.name) : "failed" )
+          }
+        end
+        logger.info list.size
         friends = friends.next_page
         break if friends.nil?
       end
