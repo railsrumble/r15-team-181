@@ -1,0 +1,12 @@
+<h1>Names#match</h1>
+
+<%= form_tag("/names/match", method: "post") do %>
+<%= label_tag :your_name, "여러분의 이름" %>
+<%= text_field_tag :your_name, "#{@name[:your_name]}" %> <br />
+<%= label_tag :your_count, "#{@name[:your_count]}" %> <br />
+<%= label_tag :friend_name, "친구 이름" %>
+<%= text_field_tag :friend_name, "#{@name[:friend_name]}" %> <br />
+<%= label_tag :friend_count, "#{@name[:friend_count]}" %> <br />
+<%= label_tag :strokes, "#{@name[:strokes]}" %> <br />
+<%= submit_tag "이름 궁합" %>
+<% end %>
