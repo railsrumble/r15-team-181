@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'names/match'
   post 'names/match'
   match 'try', to: 'names#try', as: 'try', via: [:get, :post]
+  post 'names/test'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -11,11 +11,11 @@
 <%= submit_tag "이름 궁합" %>
 <% end %>
 
-<% if current_user %>
-<%= "친구 수: #{current_user.friends_count}명" %> <br />
-<ol>
-<% current_user.match_friends.each do |x| %>
-<li><%= x[:friend_name] %>, <%= x[:hangul] %>, <%= x[:match_forward] %>, <%= x[:match_backward] %></li>
-<% end %>
-</ol>
-<% end %>
+# <% if current_user %>
+# <%= "친구 수: #{current_user.friends_count}명" %> <br />
+# <ol>
+# <% current_user.match_friends.each do |x| %>
+# <li><%= x[:friend_name] %>, <%= x[:hangul] %>, <%= x[:match_forward] %>, <%= x[:match_backward] %></li>
+# <% end %>
+# </ol>
+# <% end %>

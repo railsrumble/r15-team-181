@@ -1,1 +1,62 @@
-<h2> TRY </h2>
+<%
+if params[:name]
+  your_name = params[:name][:your_name]
+  friend_name = params[:name][:friend_name]
+  your_name_k = params[:name][:matching_point][0]
+  friend_name_k = params[:name][:matching_point][1]
+  mathcing_point = params[:name][:matching_point][2]
+else
+  your_name = nil
+  friend_name = nil
+  your_name_k = nil
+  friend_name_k = nil
+  mathcing_point = nil
+end
+%>
+<div>
+<pre>
+1. Change names in korean sounds.
+2. Count strokes of names in characters.
+3. Calculate mathcing point between you and your friends.
+
+KOREAN STROKES = {
+  'ㄱ' => 2, 'ㄲ' => 4, 'ㄴ' => 2, 'ㄷ' => 3, 'ㄸ' => 6, 'ㄹ' => 5, 'ㅁ' => 4,
+  'ㅂ' => 4, 'ㅃ' => 8, 'ㅅ' => 2, 'ㅆ' => 4, 'ㅇ' => 1, 'ㅈ' => 3, 'ㅉ' => 6,
+  'ㅊ' => 4, 'ㅋ' => 3, 'ㅌ' => 4, 'ㅍ' => 4, 'ㅎ' => 3,
+  'ㅏ' => 2, 'ㅐ' => 3, 'ㅑ' => 3, 'ㅒ' => 4, 'ㅓ' => 2, 'ㅔ' => 3, 'ㅕ' => 3,
+  'ㅖ' => 4, 'ㅗ' => 2, 'ㅘ' => 4, 'ㅙ' => 5, 'ㅚ' => 3, 'ㅛ' => 3, 'ㅜ' => 2,
+  'ㅝ' => 4, 'ㅞ' => 5, 'ㅟ' => 3, 'ㅠ' => 3, 'ㅡ' => 1, 'ㅢ' => 2, 'ㅣ' => 1,
+  'ㄳ' => 4, 'ㄵ' => 5, 'ㄶ' => 5, 'ㄺ' => 7, 'ㄻ' => 9, 'ㄼ' => 9, 'ㄽ' => 7,
+  'ㄾ' => 9, 'ㄿ' => 9, 'ㅀ' => 8, 'ㅄ' => 6,
+  nil => 0
+}
+</pre>
+</div>
+<%= form_tag("/names/test", method: "post") do %>
+<div class='row text-center feature'>
+  <div class='col-sm-4 col-xs-10 col-xs-offset-1 col-sm-offset-0'>
+    <i class='glyphicon glyphicon-user'></i>
+    <h3>Your Name</h3>
+    <%= text_field_tag "your_name", your_name, placeholder: 'Type the name (Korean or English)',  class: "form-control" %>
+    <p>Korean Sounds: <%= your_name_k %></p>
+  </div>
+  <div class='col-sm-4 col-xs-6'>
+    <i class='glyphicon glyphicon-user'></i>
+    <h3>Your Friend's Name</h3>
+    <%= text_field_tag "friend_name", friend_name, placeholder: 'Type the name (Korean or English)', class: "form-control" %>
+    <p>Korean Sounds: <%= friend_name_k %></p>
+  </div>
+  <div class='col-sm-4 col-xs-6'>
+    <i class='glyphicon glyphicon-search'></i>
+    <h3>Matching point(%)</h3>
+    <%= text_field_tag "friend_name", mathcing_point, disabled: true, class: "form-control" %>
+  </div>
+</div>
+<div class='row'>
+  <%= submit_tag "Match", class: "btn btn-primary btn-block btn-lg" %>
+</div>
+<div class='row'>
+  <%= link_to "Reset", try_path,  class: "btn btn-warning btn-block btn-lg" %>
+</div>
+<% end %>
+
