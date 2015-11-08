@@ -10,6 +10,9 @@ class NamesController < ApplicationController
     @name[:strokes] = to_strokes @name[:your_name], @name[:friend_name]
   end
 
+  def try
+  end
+
 private
   def name_params
     params.require(:name).permit(:your_name, :friend_name)

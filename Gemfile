@@ -10,6 +10,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'omniauth-facebook'
 gem 'koala', '~> 2.2'
+gem 'bootstrap-sass', '~> 3.3'
 
 group :development, :test do
   gem 'sqlite3'
