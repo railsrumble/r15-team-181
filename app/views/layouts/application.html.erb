@@ -1,3 +1,24 @@
+<% if params[:screenshot] %>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vita 3,000</title>
+</head>
+<body>
+<%= image_tag "screenshot.png", alt: "Vita 3000: Screenshot" %>
+<!-- Place this before your </body> tag. -->
+<script type="text/javascript">
+  var rumbleBannerBackgroundColor, rumbleBannerTextColor, rumbleBannerLinkColor, rumbleBannerPlacement;
+  rumbleBannerBackgroundColor = "#161616";
+  rumbleBannerTextColor = "#b0b0b0";
+  rumbleBannerLinkColor = "#ffffff";
+  rumbleBannerPlacement = "top"; // Optionally replace with "bottom".
+</script>
+<script src="https://d4nnn7wspfa3h.cloudfront.net/banner-2015.js" type="text/javascript"></script>
+</body>
+</body>
+</html>
+<% else %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,3 +107,4 @@
 <script src="https://d4nnn7wspfa3h.cloudfront.net/banner-2015.js" type="text/javascript"></script>
 </body>
 </html>
+<% end %>
